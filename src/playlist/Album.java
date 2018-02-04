@@ -1,27 +1,27 @@
 package playlist;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class Album {
 	
 	private boolean isCompilation;
 	private String title;
 	private String artist;
-	private ArrayList<Song> songs;
+	private LinkedList<Song> songs;
 	
 	public Album(boolean isCompilation, String artist, String title){
 		this.isCompilation = isCompilation;
 		this.artist = artist;
 		this.title = title;
-		this.songs = new ArrayList<Song>();
+		this.songs = new LinkedList<Song>();
 	}
 
 	public boolean addSong(Song song) {
-		if(isCompilation()){
+		if(isCompilation() && !songAlreadyExists(song)){
 			songs.add(song);
 			return true;
 		}else{
-			if(song.getAlbum().equals(getTitle()) && song.getArtist().equals(getArtist())){
+			if(song.getAlbum().equals(getTitle()) && song.getArtist().equals(getArtist()) && !songAlreadyExists(song)){
 				songs.add(song);
 				return true;
 			}else{
@@ -30,7 +30,17 @@ public class Album {
 		}
 	}
 	
-	public ArrayList<Song> getSongs(){
+	private boolean songAlreadyExists(Song song){
+		for(int i=0; i<songs.size(); i++){
+			Song currentSong = songs.get(i);
+			if(currentSong.getTitle().equals(song.getTitle()) && currentSong.getArtist().equals(song.getArtist())){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public LinkedList<Song> getSongs(){
 		return songs;
 	}
 	
