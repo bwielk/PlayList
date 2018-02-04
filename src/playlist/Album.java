@@ -44,11 +44,11 @@ public class Album {
 		return songs;
 	}
 	
-	private String getTitle() {
+	public String getTitle() {
 		return title;
 	}
 	
-	private String getArtist(){
+	public String getArtist(){
 		return artist;
 	}
 
