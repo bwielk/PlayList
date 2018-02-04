@@ -40,4 +40,25 @@ public class PlayerTest{
 		assertEquals(true, player.addAlbum(album2));
 		assertEquals(2, player.getAlbums().size());
 	}
+	
+	@Test
+	public void playerCanCreatePlaylists(){
+		assertEquals(true, player.createPlaylist("Mix"));
+	}
+	
+	@Test
+	public void playerStoresMultiplePlaylist(){
+		assertEquals(true, player.createPlaylist("Rock"));
+		assertEquals(true, player.createPlaylist("My favs"));
+		assertEquals(true, player.createPlaylist("Street music"));
+		assertEquals(3, player.getPlaylists().size());
+	}
+	
+	@Test
+	public void playerCannotAddAPlaylistWithTheSameName(){
+		assertEquals(true, player.createPlaylist("Rock"));
+		assertEquals(true, player.createPlaylist("My favs"));
+		assertEquals(false, player.createPlaylist("Rock"));
+		assertEquals(2, player.getPlaylists().size());
+	}
 }
