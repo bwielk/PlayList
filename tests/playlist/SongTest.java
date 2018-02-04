@@ -29,5 +29,4 @@ public class SongTest{
 		assertEquals("Amy Winehouse", song2.getArtist());
 		assertEquals("Rehab", song2.getAlbum());
 	}
-
 }
