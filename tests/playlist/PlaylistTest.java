@@ -41,10 +41,26 @@ public class PlaylistTest {
 	}
 	
 	@Test
+	public void playerCanGetAPlaylistByItsName(){
+		Playlist playlistSoul = player.getPlaylistByName("Soul");
+		Playlist playlistRock = player.getPlaylistByName("Rock");
+		assertEquals(true, player.getPlaylists().contains(playlistSoul));
+		assertEquals(true, player.getPlaylists().contains(playlistRock));
+	}
+	
+	@Test
+	public void playerCannotGetAPlaylistByItsNameIfThePlaylistHasntBeenCreatedByPlayer(){
+		Playlist playlistDisco = player.getPlaylistByName("Disco");
+		Playlist playlistSoul = player.getPlaylistByName("Soul");
+		assertEquals(true, player.getPlaylists().contains(playlistSoul));
+		assertEquals(false, player.getPlaylists().contains(playlistDisco));
+	}
+	
+	@Test
 	public void playerAddsANewSongFromAnExistingAlbumToAPlaylist(){
 		assertEquals(true, player.addSongToPlaylist(song1, "Rock"));
 		assertEquals(true, player.addSongToPlaylist(song2, "Rock"));
 		assertEquals(true, player.addSongToPlaylist(song5, "Rock"));
-		assertEquals(3, player.getPlaylistByName("Rock").size());
+		assertEquals(3, player.getPlaylistByName("Rock").getSongs().size());
 	}
 }

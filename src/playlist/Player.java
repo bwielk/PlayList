@@ -57,4 +57,21 @@ public class Player {
 		}
 		return false;
 	}
+
+	public boolean addSongToPlaylist(Song song, String playlistName){
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public Playlist getPlaylistByName(String playlistName) {
+		if(playlistWithTheNameExists(playlistName)){
+			for(int i=0; i<playlists.size(); i++){
+				Playlist currentPlaylist = playlists.get(i);
+				if(currentPlaylist.getName().equals(playlistName)){
+					return currentPlaylist;
+				}
+			}
+		}
+		return null;
+	}
 }
