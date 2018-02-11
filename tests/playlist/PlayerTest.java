@@ -64,6 +64,7 @@ public class PlayerTest{
 	
 	@Test
 	public void playerCanFindRecordsFromAddedAlbumsByParameters(){
+		System.out.println("Test 1");
 		assertEquals(true, player.addAlbum(album1));
 		assertEquals(true, player.addAlbum(album2));
 		assertNotNull(player.findSong("Amy Winehouse", "Just Friends", "Rehab"));
@@ -72,6 +73,7 @@ public class PlayerTest{
 	
 	@Test
 	public void playerCannotFindRecordsIfTheyAreNotFromAddedAlbums(){
+		System.out.println("Test 2");
 		assertEquals(true, player.addAlbum(album1));
 		assertEquals(true, player.addAlbum(album2));
 		assertNull(player.findSong("Amy Winehouse", "Some Unholy War", "Rehab"));
