@@ -1,6 +1,7 @@
 package playlist;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class Player {
 	
@@ -55,6 +56,21 @@ public class Player {
 			return true;
 		}
 		return false;
+	}
+	
+	public Song findSong(String artist, String title, String album){
+		for(int i=0; i<albums.size(); i++){
+			Album currentAlbum = albums.get(i);
+			for(int n=0; n<currentAlbum.getSongs().size(); n++){
+				Song currentSong = currentAlbum.getSongs().get(n);
+				if(currentSong.getArtist().equals(artist) &&
+					currentSong.getTitle().equals(title) &&
+					currentSong.getAlbum().equals(album)){
+					return currentSong;
+				}
+			}
+		}
+		return null;
 	}
 	
 	public Playlist getPlaylistByName(String playlistName) {

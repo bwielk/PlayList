@@ -63,4 +63,16 @@ public class PlaylistTest {
 		assertEquals(true, player.addSongToPlaylist(song5, "Rock"));
 		assertEquals(3, player.getPlaylistByName("Rock").getSongs().size());
 	}
+	
+	@Test
+	public void playerCannotAcceptASongUnlessItExistsInPlayersAlbumSet(){
+		Song newSong1 = new Song("Amy Winehouse", "Some Unholy War", "Back To Black");
+		Song newSong2 = new Song("Anita Baker", "Sweet Love", "Sweet Love");
+		assertEquals(true, player.addSongToPlaylist(song4, "Soul"));
+		assertEquals(1, player.getPlaylistByName("Soul").getSongs().size());
+		assertEquals(false, player.addSongToPlaylist(newSong2, "Soul"));
+		assertEquals(1, player.getPlaylistByName("Soul").getSongs().size());
+		assertEquals(false, player.addSongToPlaylist(newSong1, "Soul"));
+		assertEquals(1, player.getPlaylistByName("Soul").getSongs().size());
+	}
 }

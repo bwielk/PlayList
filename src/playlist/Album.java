@@ -30,7 +30,7 @@ public class Album {
 		}
 	}
 	
-	private boolean songAlreadyExists(Song song){
+	public boolean songAlreadyExists(Song song){
 		for(int i=0; i<songs.size(); i++){
 			Song currentSong = songs.get(i);
 			if(currentSong.getTitle().equals(song.getTitle()) && currentSong.getArtist().equals(song.getArtist())){

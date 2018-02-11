@@ -18,7 +18,7 @@ public class PlayerTest{
 		song1 = new Song("Amy Winehouse", "Just Friends", "Rehab");
 		song2 = new Song("Amy Winehouse", "Rehab", "Rehab");
 		song3 = new Song("Cigarettes after sex", "Apocalypse", "Cigarettes after sex");
-		song4 = new Song("Cigarettes after sex", "K.", "Cigarettes aftr sex");
+		song4 = new Song("Cigarettes after sex", "K.", "Cigarettes after sex");
 		album1.addSong(song1);
 		album1.addSong(song2);
 		album2.addSong(song1);
@@ -60,5 +60,22 @@ public class PlayerTest{
 		assertEquals(true, player.createPlaylist("My favs"));
 		assertEquals(false, player.createPlaylist("Rock"));
 		assertEquals(2, player.getPlaylists().size());
+	}
+	
+	@Test
+	public void playerCanFindRecordsFromAddedAlbumsByParameters(){
+		assertEquals(true, player.addAlbum(album1));
+		assertEquals(true, player.addAlbum(album2));
+		assertNotNull(player.findSong("Amy Winehouse", "Just Friends", "Rehab"));
+		assertNotNull(player.findSong("Cigarettes after sex", "K.", "Cigarettes after sex"));
+	}
+	
+	@Test
+	public void playerCannotFindRecordsIfTheyAreNotFromAddedAlbums(){
+		assertEquals(true, player.addAlbum(album1));
+		assertEquals(true, player.addAlbum(album2));
+		assertNull(player.findSong("Amy Winehouse", "Some Unholy War", "Rehab"));
+		assertNotNull(player.findSong("Cigarettes after sex", "K.", "Cigarettes after sex"));
+		assertNull(player.findSong("Cigarettes after sex", "Sweet", "Cigarettes after sex"));
 	}
 }
