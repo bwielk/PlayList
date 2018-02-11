@@ -9,6 +9,7 @@ public class Playlist {
 	
 	public Playlist (String name){
 		this.name = name;
+		this.songs = new LinkedList<Song>();
 	}
 	
 	public String getName(){

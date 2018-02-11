@@ -36,9 +36,9 @@ public class Player {
 		return false;
 	}
 
-	public boolean createPlaylist(String name){
-		if(!playlistWithTheNameExists(name)){
-			playlists.add(new Playlist(name));
+	public boolean createPlaylist(String playlistName){
+		if(getPlaylistByName(playlistName) == null){
+			playlists.add(new Playlist(playlistName));
 			return true;
 		}
 		return false;
@@ -47,29 +47,21 @@ public class Player {
 	public ArrayList<Playlist> getPlaylists(){
 		return playlists;
 	}
-	
-	private boolean playlistWithTheNameExists(String name){
-		for(int i=0; i<playlists.size(); i++){
-			Playlist currentPlaylist = playlists.get(i);
-			if(currentPlaylist.getName().equals(name)){
-				return true;
-			}
+
+	public boolean addSongToPlaylist(Song song, String playlistName){
+		if(getPlaylistByName(playlistName) != null){
+			Playlist playlist = getPlaylistByName(playlistName);
+			playlist.getSongs().add(song);
+			return true;
 		}
 		return false;
 	}
-
-	public boolean addSongToPlaylist(Song song, String playlistName){
-		// TODO Auto-generated method stub
-		return false;
-	}
-
+	
 	public Playlist getPlaylistByName(String playlistName) {
-		if(playlistWithTheNameExists(playlistName)){
-			for(int i=0; i<playlists.size(); i++){
-				Playlist currentPlaylist = playlists.get(i);
-				if(currentPlaylist.getName().equals(playlistName)){
-					return currentPlaylist;
-				}
+		for(int i=0; i<playlists.size(); i++){
+			Playlist currentPlaylist = playlists.get(i);
+			if(currentPlaylist.getName().equals(playlistName)){
+				return currentPlaylist;
 			}
 		}
 		return null;
