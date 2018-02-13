@@ -4,13 +4,60 @@ import java.util.Scanner;
 
 public class PlayerLoader {
 	
-	private Scanner scanner;
-	private Player player;
+	private static Scanner scanner = new Scanner(System.in);
+	private static Player player = new Player();
 	
 	public static void main(String args[]){
 		
-		Scanner scanner = new Scanner(System.in);
+		Album album1 = new Album(false, "Nirvana", "Nevermind");
+		album1.addSong(new Song("Nirvana", "Smells Like Teen Spirit", "Nevermind"));
+		album1.addSong(new Song("Nirvana", "Polly", "Nevermind"));
+		album1.addSong(new Song("Nirvana", "Come As You Are", "Nevermind"));
+		album1.addSong(new Song("Nirvana", "Breed", "Nevermind"));
+		album1.addSong(new Song("Nirvana", "Lithium", "Nevermind"));
+		album1.addSong(new Song("Nirvana", "The Man Who Sold The World", "Nevermind"));
+		Album album2 = new Album(false, "David Bowie", "Aladdin Sane");
+		album2.addSong(new Song("David Bowie", "Lady Grinning Soul", "Aladdin Sane"));
+		album2.addSong(new Song("David Bowie", "Time", "Aladdin Sane"));
+		album2.addSong(new Song("David Bowie", "The Prettiest Star", "Aladdin Sane"));
+		player.addAlbum(album1);
+		player.addAlbum(album2);
+		player.createPlaylist("Rock");
+		player.createPlaylist("Bowie");
+		player.addSongToPlaylist(new Song("Nirvana", "The Man Who Sold The World", "Nevermind"), "Bowie");
+		player.addSongToPlaylist(new Song("David Bowie", "Lady Grinning Soul", "Aladdin Sane"), "Bowie");
+		player.addSongToPlaylist(new Song("David Bowie", "Time", "Aladdin Sane"), "Bowie");
+		player.addSongToPlaylist(new Song("David Bowie", "The Prettiest Star", "Aladdin Sane"), "Bowie");
 		
+		boolean quit = false;
+		int choice = 0;
+		printMenu();
+		while(!quit){
+			System.out.println("Enter your choice");
+			choice = scanner.nextInt();
+			scanner.nextLine();
+			switch(choice){
+			case 0:
+				printMenu();
+				break;
+			case 1:
+				showPlaylists();
+				break;
+			}
+		}
 	}
-
+	
+	private static void showPlaylists(){
+		System.out.println("\tHere are the playlists: ");
+		System.out.println("\tNAME\tNUMBER OF SONGS");
+		for(int i=0; i<player.getPlaylists().size(); i++){
+			System.out.println("\t" + player.getPlaylists().get(i).getName()+ "\t" + player.getPlaylists().get(i).getSongs().size());
+		}
+	}
+	
+	private static void printMenu(){
+		System.out.println("\nWelcome! Enter a number to select and action");
+		System.out.println("\tPress 0: to print instructions");
+		System.out.println("\tPress 1: to show existing playlists");
+	}	
 }
