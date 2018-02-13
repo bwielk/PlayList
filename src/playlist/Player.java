@@ -49,9 +49,8 @@ public class Player {
 		return playlists;
 	}
 
-	public boolean addSongToPlaylist(String artist, String title, String album, String playlistName){
-		Song songToAdd = findSong(artist, title, album);
-		System.out.println(songToAdd);
+	public boolean addSongToPlaylist(Song song, String playlistName){
+		Song songToAdd = findSong(song.getArtist(), song.getTitle(), song.getAlbum());
 		if(songToAdd != null && getPlaylistByName(playlistName) != null){
 			Playlist playlist = getPlaylistByName(playlistName);
 			playlist.getSongs().add(songToAdd);

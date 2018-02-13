@@ -60,9 +60,9 @@ public class PlaylistTest {
 	
 	@Test
 	public void playerAddsANewSongFromAnExistingAlbumToAPlaylist(){
-		assertEquals(true, player.addSongToPlaylist(song1.getArtist(), song1.getTitle(), song1.getAlbum(), "Rock"));
-		assertEquals(true, player.addSongToPlaylist(song2.getArtist(), song2.getTitle(), song2.getAlbum(), "Rock"));
-		assertEquals(true, player.addSongToPlaylist(song5.getArtist(), song5.getTitle(), song5.getAlbum(), "Rock"));
+		assertEquals(true, player.addSongToPlaylist(song1, "Rock"));
+		assertEquals(true, player.addSongToPlaylist(song2, "Rock"));
+		assertEquals(true, player.addSongToPlaylist(song5, "Rock"));
 		assertEquals(3, player.getPlaylistByName("Rock").getSongs().size());
 	}
 	
@@ -70,11 +70,11 @@ public class PlaylistTest {
 	public void playerCannotAcceptASongUnlessItExistsInPlayersAlbumSet(){
 		Song newSong1 = new Song("Amy Winehouse", "Some Unholy War", "Back To Black");
 		Song newSong2 = new Song("Anita Baker", "Sweet Love", "Sweet Love");
-		assertEquals(true, player.addSongToPlaylist(song4.getArtist(), song4.getTitle(), song4.getAlbum(), "Soul"));
+		assertEquals(true, player.addSongToPlaylist(song4, "Soul"));
 		assertEquals(1, player.getPlaylistByName("Soul").getSongs().size());
-		assertEquals(false, player.addSongToPlaylist(newSong1.getArtist(), newSong1.getTitle(), newSong1.getAlbum(), "Soul"));
+		assertEquals(false, player.addSongToPlaylist(newSong1, "Soul"));
 		assertEquals(1, player.getPlaylistByName("Soul").getSongs().size());
-		assertEquals(false, player.addSongToPlaylist(newSong2.getArtist(), newSong2.getTitle(), newSong2.getAlbum(), "Soul"));
+		assertEquals(false, player.addSongToPlaylist(newSong2, "Soul"));
 		assertEquals(1, player.getPlaylistByName("Soul").getSongs().size());
 	}
 }

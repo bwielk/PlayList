@@ -10,7 +10,6 @@ public class Song {
 		this.artist = artist;
 		this.title = title;
 		this.album = album;
-		
 	}
 	
 	public String getArtist(){

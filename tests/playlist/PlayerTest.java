@@ -10,6 +10,7 @@ public class PlayerTest{
 	private Player player;
 	private Album album1, album2;
 	private Song song1, song2, song3, song4;
+	
 	@Before
 	public void before() {
 		player = new Player();
@@ -64,7 +65,6 @@ public class PlayerTest{
 	
 	@Test
 	public void playerCanFindRecordsFromAddedAlbumsByParameters(){
-		System.out.println("Test 1");
 		assertEquals(true, player.addAlbum(album1));
 		assertEquals(true, player.addAlbum(album2));
 		assertNotNull(player.findSong("Amy Winehouse", "Just Friends", "Rehab"));
@@ -73,11 +73,17 @@ public class PlayerTest{
 	
 	@Test
 	public void playerCannotFindRecordsIfTheyAreNotFromAddedAlbums(){
-		System.out.println("Test 2");
 		assertEquals(true, player.addAlbum(album1));
 		assertEquals(true, player.addAlbum(album2));
 		assertNull(player.findSong("Amy Winehouse", "Some Unholy War", "Rehab"));
 		assertNotNull(player.findSong("Cigarettes after sex", "K.", "Cigarettes after sex"));
 		assertNull(player.findSong("Cigarettes after sex", "Sweet", "Cigarettes after sex"));
+	}
+	
+	@Test
+	public void playerCanPlayAPlaylist(){
+		assertEquals(true, player.addAlbum(album1));
+		assertEquals(true, player.addAlbum(album2));
+		
 	}
 }
