@@ -43,6 +43,22 @@ public class PlayerLoader {
 			case 1:
 				showPlaylists();
 				break;
+			case 2:
+				showAlbums();
+				break;
+			}
+		}
+	}
+	
+	private static void showAlbums(){
+		System.out.println("Here are your albums");
+		System.out.println("\tARTIST\t\tTITLE\t\tNUMBER OF SONGS");
+		for(int i=0; i<player.getAlbums().size(); i++){
+			Album currentAlbum = player.getAlbums().get(i);
+			System.out.println("\t"+currentAlbum.getArtist()+"\t\t"+currentAlbum.getTitle()+"\t\t"+currentAlbum.getSongs().size());
+			for(int n=0; n<currentAlbum.getSongs().size(); n++){
+				Song currentSong = currentAlbum.getSongs().get(n);
+				System.out.println("\t"+(n+1)+"\t"+currentSong.getTitle());
 			}
 		}
 	}
@@ -59,5 +75,6 @@ public class PlayerLoader {
 		System.out.println("\nWelcome! Enter a number to select and action");
 		System.out.println("\tPress 0: to print instructions");
 		System.out.println("\tPress 1: to show existing playlists");
+		System.out.println("\tPress 2: to show existing albums and their songs");
 	}	
 }
