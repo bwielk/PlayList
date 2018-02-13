@@ -107,5 +107,6 @@ public class PlayerTest{
 	public void playerCanPlayAPlaylist(){
 		createVariousPlaylist();
 		assertEquals(7, player.getPlaylistByName("Rock").getSongs().size());
+		
 	}
 }

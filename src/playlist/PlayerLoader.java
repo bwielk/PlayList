@@ -67,7 +67,12 @@ public class PlayerLoader {
 		System.out.println("\tHere are the playlists: ");
 		System.out.println("\tNAME\tNUMBER OF SONGS");
 		for(int i=0; i<player.getPlaylists().size(); i++){
-			System.out.println("\t" + player.getPlaylists().get(i).getName()+ "\t" + player.getPlaylists().get(i).getSongs().size());
+			Playlist currentPlaylist = player.getPlaylists().get(i);
+			System.out.println("\t" + currentPlaylist.getName()+ "\t" + currentPlaylist.getSongs().size());
+			for(int n=0; n<currentPlaylist.getSongs().size(); n++){
+				Song currentSong = currentPlaylist.getSongs().get(n);
+				System.out.println("\t"+(n+1)+"\t"+currentSong.getArtist()+"\t"+currentSong.getTitle()+"\t"+currentSong.getAlbum());
+			}
 		}
 	}
 	
