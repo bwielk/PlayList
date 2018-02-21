@@ -90,13 +90,16 @@ public class Player {
 
 	public String playNextSong(String playlistName) {
 		Playlist currentPlaylist = getPlaylistByName(playlistName);
-		if(!currentPlaylist.getSongs().isEmpty()){
+		if(!currentPlaylist.getSongs().isEmpty() && currentPlaylist != null){
 			ListIterator<Song> currentPlaylistIterator = currentPlaylist.getSongs().listIterator();
 			if(currentPlaylistIterator.hasNext()){
 				Song currentlyPlayed = currentPlaylistIterator.next();
 				return "Currently played: " + currentlyPlayed.getTitle() + " by " + currentlyPlayed.getArtist();
+			}else{
+				return "End of the list";
 			}
+		}else{
+			return "The playlist " + playlistName + " is empty or doesn't exist";
 		}
-		return "The playlist " + playlistName + "is empty";
 	}
 }

@@ -104,6 +104,15 @@ public class PlayerTest{
 	}
 	
 	@Test
+	public void playerShowsThatThePlayedPlaylistIsEmpty(){
+		assertEquals(true, player.addAlbum(album2));
+		player.createPlaylist("Disco");
+		assertEquals("The playlist Disco is empty or doesn't exist", player.playNextSong("Disco"));
+		assertEquals(true, player.addSongToPlaylist(song3, "Disco"));
+		assertEquals("Currently played: Apocalypse by Cigarettes after sex", player.playNextSong("Disco"));
+	}
+	
+	@Test
 	public void playerCanBrowseThroughAPlaylist(){
 		createRockPlaylist();
 		assertEquals(7, player.getPlaylistByName("Rock").getSongs().size());
