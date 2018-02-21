@@ -90,7 +90,7 @@ public class PlayerTest{
 		assertNull(player.findSong("Cigarettes after sex", "Sweet", "Cigarettes after sex"));
 	}
 	
-	private void createVariousPlaylist(){
+	private void createRockPlaylist(){
 		assertEquals(true, player.addAlbum(album1));
 		assertEquals(true, player.addAlbum(album2));
 		player.createPlaylist("Rock");
@@ -104,9 +104,10 @@ public class PlayerTest{
 	}
 	
 	@Test
-	public void playerCanPlayAPlaylist(){
-		createVariousPlaylist();
+	public void playerCanBrowseThroughAPlaylist(){
+		createRockPlaylist();
 		assertEquals(7, player.getPlaylistByName("Rock").getSongs().size());
-		
+		assertEquals("Currently played: Apocalypse by Cigarettes after sex", player.playNextSong("Rock"));
+		assertEquals("Currently played: K. by Cigarettes after sex", player.playNextSong("Rock"));
 	}
 }

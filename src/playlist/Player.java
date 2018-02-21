@@ -2,11 +2,15 @@ package playlist;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.ListIterator;
+
+import javax.swing.text.html.HTMLDocument.Iterator;
 
 public class Player {
 	
 	private ArrayList<Album> albums;
 	private ArrayList<Playlist> playlists;
+	private int currentlyPlayed;
 	
 	public Player(){
 		albums = new ArrayList<Album>();
@@ -82,5 +86,17 @@ public class Player {
 			}
 		}
 		return null;
+	}
+
+	public String playNextSong(String playlistName) {
+		Playlist currentPlaylist = getPlaylistByName(playlistName);
+		if(!currentPlaylist.getSongs().isEmpty()){
+			ListIterator<Song> currentPlaylistIterator = currentPlaylist.getSongs().listIterator();
+			if(currentPlaylistIterator.hasNext()){
+				Song currentlyPlayed = currentPlaylistIterator.next();
+				return "Currently played: " + currentlyPlayed.getTitle() + " by " + currentlyPlayed.getArtist();
+			}
+		}
+		return "The playlist " + playlistName + "is empty";
 	}
 }
